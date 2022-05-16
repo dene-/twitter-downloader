@@ -1,0 +1,71 @@
+// Primary colors
+$primary: rgb(29, 155, 240);
+$dark: #212121;
+$theme1: #33a8d1;
+
+@import 'node_modules/bootstrap/scss/_functions';
+@import 'node_modules/bootstrap/scss/_variables';
+@import 'node_modules/bootstrap/scss/_mixins';
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css');
+
+// Add custom colors to the bootstrap theme
+$custom-theme-colors: (
+    'theme1': $theme1,
+    'white': $white,
+);
+
+// Fix for bootstrap 5.1 transposing colors
+$theme-colors: map-merge($theme-colors, $custom-theme-colors);
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, '$value');
+$utilities-colors: map-merge($utilities-colors, $theme-colors-rgb);
+$utilities-text-colors: map-loop($utilities-colors, rgba-css-var, '$key', 'text');
+$utilities-bg-colors: map-loop($utilities-colors, rgba-css-var, '$key', 'bg');
+
+// Overwrite bootstrap sass variables (check _variables for all options)
+$enable-negative-margins: true;
+$navbar-light-color: $dark;
+$font-family-base: Helvetica, sans-serif;
+$font-size-base: 0.85rem;
+$input-btn-padding-x: 1rem;
+$border-radius: 50px;
+$btn-border-radius: 50px;
+$input-border-radius: 50px;
+$input-border-radius-lg: 50px;
+$input-border-width: 0;
+$input-focus-border-color: $primary;
+$link-color: $theme1;
+
+// Finally load bootstrap
+@import 'node_modules/bootstrap/scss/bootstrap';
+
+body {
+    background-color: black;
+    height: 100vh;
+}
+
+.btn-primary {
+    color: white;
+    font-weight: bold;
+
+    &:hover,
+    &:active,
+    &:focus {
+        color: white;
+    }
+}
+
+.btn-outline-primary {
+    font-weight: bold;
+
+    &:hover,
+    &:active,
+    &:focus {
+        color: white;
+    }
+}
+
+#hero-container {
+        border-bottom: 1px solid rgb(47, 51, 54);
+        border-left: 0;
+        border-right: 0;
+}
